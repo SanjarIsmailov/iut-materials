@@ -1,21 +1,15 @@
-# server.py
+#server
 import socket
 
 HOST = "localhost"
 PORT = 8080
 
-
 QUESTIONS = [
-    ("Q1) What is a thread? A) A heavy process B) A lightweight unit of execution C) A type of memory",
-     "B"),
-    ("Q2) What is a kernel? A) A text editor B) A type of file C) The core part of the operating system",
-     "C"),
-    ("Q3) Which one is a scheduling algorithm? A) Round Robin B) Binary Search C) Quick Sort",
-     "A"),
-    ("Q4) What does RAM stand for? A) Read Access Memory B) Random Access Memory C) Run Active Memory",
-     "B"),
-    ("Q5) What is a deadlock? A) Processes wait for each other forever B) A fast CPU C) A full hard disk",
-     "A"),
+    ("Q1) What is a thread? A) A heavy process B) A lightweight unit of execution C) A type of memory", "B"),
+    ("Q2) What is a kernel? A) A text editor B) A type of file C) The core part of the operating system", "C"),
+    ("Q3) Which one is a scheduling algorithm? A) Round Robin B) Binary Search C) Quick Sort", "A"),
+    ("Q4) What does RAM stand for? A) Read Access Memory B) Random Access Memory C) Run Active Memory", "B"),
+    ("Q5) What is a deadlock? A) Processes wait for each other forever B) A fast CPU C) A full hard disk", "A"),
 ]
 
 
@@ -24,7 +18,7 @@ def main():
     server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     server.bind((HOST, PORT))
     server.listen(1)
-    print(f"Server is listening on {HOST}:{PORT}")
+    print("Server is listening on", HOST, PORT)
 
     conn, addr = server.accept()
     print("Client connected:", addr)
@@ -47,11 +41,11 @@ def main():
         else:
             conn.sendall(b"Wrong!\n")
     else:
-
-        conn.sendall(f"Your score: {score}/{len(QUESTIONS)}\n".encode())
+        conn.sendall(("Your score: " + str(score) + "/" + str(len(QUESTIONS)) + "\n").encode())
 
     conn.close()
     server.close()
     print("Server closed.")
 
 
+main()
