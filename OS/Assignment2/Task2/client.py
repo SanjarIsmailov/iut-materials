@@ -1,4 +1,4 @@
-# client.py
+#client
 import socket
 
 HOST = "localhost"
@@ -19,10 +19,12 @@ def main():
         print("Server:", message)
 
         if message.startswith("Q"):
-
             answer = input("Client: ").strip().upper()
             client.sendall((answer + "\n").encode())
         elif message.startswith("Your score"):
             break
 
     client.close()
+
+
+main()
